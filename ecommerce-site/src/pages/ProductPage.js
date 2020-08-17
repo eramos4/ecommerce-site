@@ -1,12 +1,15 @@
 import React, {useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import {ShopContext} from '../context/shopContext'
-import {Text, Div,Row,Col,Container, Button} from 'atomize'
+import {Text, Div,Row,Col,Container, Button,Image} from 'atomize'
+import InputSpinner from '../components/InputSpinner'
 
 const ProductPage = () =>{
 
     let {id} = useParams();
     const {fetchProductWithId, addItemToCheckout,product,openCart} = useContext(ShopContext)
+   
+
 
     useEffect(() =>{
         fetchProductWithId(id)
@@ -20,22 +23,81 @@ const ProductPage = () =>{
 
     return(
         <Container>
+         
+            <Div
+                h={{ xs: '20px', lg: '60px' }}
+                >
+
+                    </Div>
             <Row>
-                <Col>
-                    <Div bgImg={product.images[0].src} bgSize="cover" bgPos="center center" h="40rem" m={{ xs: '1rem', md: '4rem' }}/>
+                
+                <Col size={{ xs: 10, lg: 6 }}
+                
+                >
+                        
+                <Image 
+                m={{xs:'20px', lg:'0px'}}
+                src={product.images[0].src}></Image>
+                        
                 </Col>
-                <Col>
-                <Div m={{ x: { xs: '1rem', md: '4rem' }, y: { xs: '2rem', md: '15rem' }}} h="40rem">
-                    <Text>{product.title}</Text>
-                     <Text>${product.variants[0].price}</Text>
-                     <Button onClick={() => {
-                         addItemToCheckout(product.variants[0].id, 1)
-                         openCart()
-                         }}>Add To Cart</Button>
-                </Div>
-                     
+                <Col size={{ xs: 8, lg: 5 }}>
+                <Div 
+                    m={{
+                        x:{xs: '0px', lg:'60px'},
+                        y: {xs: '20px', lg: '30px'}
+                    }}
+                    >
+                        <Text
+                        textWeight="700"
+                        textSize={{ xs: "20px", lg: "34px" }}
+                        w={{ xs: '250px', lg: '422px'}}
+                       
+                        >{product.title}</Text>
+
+                        <Text
+                        m={{
+                            x: '10px',
+                            y: '10px'
+                        }}
+                        >${product.variants[0].price}</Text>
+
+                        <Text
+                        m={{
+                            r: '3rem',
+                            x: '10px',
+                            y: '2px'
+                        }}
+                        >Quanity</Text>
+
+
+                        <InputSpinner/>
+                                          
+
+                        <Button
+                        m={{
+                           
+                            y: '-20px'
+                        }}
+                        bg="red"
+                        hoverBg="danger700"
+                        w={{xs: '200px', lg: '280px'}}
+                        onClick={() => {
+                            addItemToCheckout(product.variants[0].id, 1)
+                            openCart()
+                            }}>Add To Cart</Button>
+
+                          <Text 
+                          m={{
+                           
+                            y: '40px'
+                        }}
+                          tag="p" textSize="paragraph" textColor="black" textWeight="200">{product.description}</Text>
+
+                    </Div>
                 </Col>
-            </Row>
+                </Row> 
+
+
         </Container>
 
     )

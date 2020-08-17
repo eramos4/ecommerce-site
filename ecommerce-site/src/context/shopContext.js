@@ -59,6 +59,22 @@ class ShopProvider extends Component {
     
       };
 
+    updateCheckoutItems = async(variantId, quantity) =>{
+      const lineItemsToUpdate = [
+        {
+          variantId,
+          quantity: parseInt(quantity,10),
+        },
+      ];
+      const checkout = await client.checkout.updateLineItems(
+        this.state.checkout.id,
+        lineItemsToUpdate
+      );
+      this.setState({ checkout: checkout });
+      console.log(checkout);
+
+    };
+
     fetchAllProducts = async () =>{
         const products = await client.product.fetchAll()
         this.setState({products: products})
