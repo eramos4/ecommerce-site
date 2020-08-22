@@ -7,7 +7,7 @@ import InputSpinner from '../components/InputSpinner'
 const ProductPage = () =>{
 
     let {id} = useParams();
-    const {fetchProductWithId, addItemToCheckout,product,openCart} = useContext(ShopContext)
+    const {fetchProductWithId, addItemToCheckout, removeCheckoutItem, updateCheckoutItems, product,openCart} = useContext(ShopContext)
    
 
 
@@ -70,21 +70,35 @@ const ProductPage = () =>{
                         >Quanity</Text>
 
 
-                        <InputSpinner/>
-                                          
+                        {/* <InputSpinner/> */}
 
+                        
                         <Button
-                        m={{
-                           
+                        m={{ 
                             y: '-20px'
                         }}
                         bg="red"
                         hoverBg="danger700"
                         w={{xs: '200px', lg: '280px'}}
+                        
                         onClick={() => {
                             addItemToCheckout(product.variants[0].id, 1)
                             openCart()
-                            }}>Add To Cart</Button>
+                            }}>Add To Cart</Button>       
+
+                        {/* <Button
+                        m={{ 
+                            y: '-20px'
+                        }}
+                        bg="red"
+                        hoverBg="danger700"
+                        w={{xs: '200px', lg: '280px'}}
+                        
+                        onClick={() => {
+                            updateCheckoutItems(product.variants[0].id, 0)
+                            openCart()
+                            }}>Update</Button>            */}
+                        
 
                           <Text 
                           m={{

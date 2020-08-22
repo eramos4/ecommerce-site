@@ -20,7 +20,7 @@ const ShopPage = () =>{
         
         <Container>
             <Div>
-                shop
+                
             </Div>
             <Row>
                 {products.map(product =>(

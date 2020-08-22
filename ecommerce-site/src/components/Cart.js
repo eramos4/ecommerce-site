@@ -4,30 +4,11 @@ import {Div, SideDrawer, Text, Row, Col, Anchor, Container, Icon, Button} from '
 
 const Cart = () =>{
 
-    const {isCartOpen, closeCart, checkout } = useContext(ShopContext)
+    const {isCartOpen, closeCart, checkout , lineItemIdsToRemove, updateCheckoutItems} = useContext(ShopContext)
 
     if (checkout.lineItems) {
     return(
-        // <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
-        //     <Div d="flex" flexDir="column" m={{b: "4rem"}}>
-        //         {checkout.lineItems && checkout.lineItems.map(item => (
-        //             <Row key={item.id}>
-        //                 <Col>
-        //                     <Div bgImg={item.variant.image.src} bgSize="cover" bgPos="center center" h="5rem" w="4rem"/>
-        //                 </Col>
-        //                 <Col>
-        //                     <Text>{item.title}</Text>
-        //                     {/* <Text>{item.variant.title}</Text> */}
-        //                     <Text>{item.quantity}</Text>
-        //                 </Col>
-        //                 <Col>
-        //                     <Text>{item.variant.price}</Text>
-        //                 </Col>
-        //             </Row>
-        //         ))}
-        //         <Anchor >Checkout</Anchor>
-        //     </Div>
-        // </SideDrawer>
+      
         <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
         <Container d="flex" flexDir="column" h="100%">
             <Row justify="space-between" border={{ b: '1px solid' }} p="0.7rem" borderColor="gray300">

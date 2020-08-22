@@ -50,6 +50,7 @@ class ShopProvider extends Component {
             quantity: parseInt(quantity, 10),
           },
         ];
+
         const checkout = await client.checkout.addLineItems(
           this.state.checkout.id,
           lineItemsToAdd
@@ -66,9 +67,25 @@ class ShopProvider extends Component {
           quantity: parseInt(quantity,10),
         },
       ];
+
       const checkout = await client.checkout.updateLineItems(
         this.state.checkout.id,
         lineItemsToUpdate
+      );
+      this.setState({ checkout: checkout });
+      console.log(checkout);
+
+    };
+
+    removeCheckoutItem = async(variantId) =>{
+      const lineItemIdsToRemove = [
+        {
+          variantId
+        },
+      ];
+      const checkout = await client.checkout.removeLineItems(
+        this.state.checkout.id,
+        lineItemIdsToRemove
       );
       this.setState({ checkout: checkout });
       console.log(checkout);
@@ -102,6 +119,7 @@ class ShopProvider extends Component {
                 fetchProductWithId: this.fetchProductWithId,
                 closeCart: this.closeCart,
                 openCart: this.openCart,
+                updateCheckoutItems: this.updateCheckoutItems,
                 addItemToCheckout: this.addItemToCheckout 
             }}>
                 {this.props.children}
