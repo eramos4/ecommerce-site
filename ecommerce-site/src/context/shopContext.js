@@ -99,6 +99,29 @@ class ShopProvider extends Component {
 
     fetchProductWithId = async (id) =>{
         const product = await client.product.fetch(id)
+        // insert your own mongoDB query
+        // axios.get('/productById/:id')
+        // this would return the product object and you can set it to 
+        // product
+
+        // const product = {
+        //   availableForSale: true,
+        //   createdAt: "2020-08-04T20:18:55Z",
+        //   description: "A Walk Through Nostalgia is a small batch 92 page zine of a collection of my favorite photographs from 2015 to 2020.",
+        //   descriptionHtml: "<span>A Walk Through Nostalgia is a  small batch 92 page zine of a collection of my favorite photographs from 2015 to 2020.</span>",
+        //   handle: "a-walk-through-nostalgia",
+        //   id: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU1NzEzMTU4OTIzNzQ=",
+        //   images: [{src: 'https://s3-us-west-1.amazonaws.com/stormco.re/assets/Lacroix.imageset/lacroix-logo-grey.png'}],
+        //   onlineStoreUrl: "https://imitationdesign.myshopify.com/products/a-walk-through-nostalgia",
+        //   options: [],
+        //   productType: "photography zine",
+        //   publishedAt: "2020-08-05T21:35:43Z",
+        //   title: "A Walk Through Nostalgia",
+        //   updatedAt: "2020-08-23T00:10:55Z",
+        //   variants: [{price: 16.99}],
+        //   vendor: "Imitation Design",
+        //   __typename: "Product",
+        // }
         this.setState({product: product})
     }
 

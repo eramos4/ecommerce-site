@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom'
 import {ShopContext} from '../context/shopContext'
 import {Text, Div,Row,Col,Container, Button,Image} from 'atomize'
 import InputSpinner from '../components/InputSpinner'
+import Loading from '../components/Loading'
 
 const ProductPage = () =>{
 
     let {id} = useParams();
-    const {fetchProductWithId, addItemToCheckout, removeCheckoutItem, updateCheckoutItems, product,openCart} = useContext(ShopContext)
+    const {fetchProductWithId, addItemToCheckout, product,openCart} = useContext(ShopContext)
    
 
 
@@ -19,11 +20,31 @@ const ProductPage = () =>{
 
     }, [fetchProductWithId, id])
 
-    if(!product.title) return <div>Loading</div>
+    if(!product.title) return <Loading />
 
     return(
         <Container>
          
+
+          {/* 
+          availableForSale: true
+createdAt: "2020-08-04T20:18:55Z"
+description: "A Walk Through Nostalgia is a small batch 92 page zine of a collection of my favorite photographs from 2015 to 2020."
+descriptionHtml: (...)
+handle: (...)
+id: (...)
+images: (...)
+onlineStoreUrl: (...)
+options: (...)
+productType: (...)
+publishedAt: "2020-08-05T21:35:43Z"
+title: "A Walk Through Nostalgia"
+type: Object
+updatedAt: (...)
+variants: (...)
+vendor: (...)
+__typename: (...)
+ */}
             <Div
                 h={{ xs: '20px', lg: '60px' }}
                 >
@@ -83,7 +104,6 @@ const ProductPage = () =>{
                         
                         onClick={() => {
                             addItemToCheckout(product.variants[0].id, 1)
-                            openCart()
                             }}>Add To Cart</Button>       
 
                         {/* <Button

@@ -4,7 +4,7 @@ import {Div, SideDrawer, Text, Row, Col, Anchor, Container, Icon, Button} from '
 
 const Cart = () =>{
 
-    const {isCartOpen, closeCart, checkout , lineItemIdsToRemove, updateCheckoutItems} = useContext(ShopContext)
+    const {isCartOpen, closeCart, checkout} = useContext(ShopContext)
 
     if (checkout.lineItems) {
     return(
@@ -52,5 +52,25 @@ const Cart = () =>{
     )
             }
             return null
+
+    // return(
+    //    <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
+    //        <Div d="flex" flexDir="Column" m={{b: "4rem"}}>
+    //         {checkout.lineItems && checkout.lineItems.map(item => (
+    //           <Row key={item.id}>
+    //                 <Col>
+    //                     <Div bgImg={item.variant.image.src} bgSize="cover" bgPos="center center" h="5rem" w="4rem" />
+    //                 </Col>
+    //                 <Col>
+    //                     <Text>{item.title}</Text>
+    //                 </Col>
+    //                 <Col>
+    //                     <Text>{item.price}</Text>
+    //                 </Col>
+    //           </Row>  
+    //         ))}
+    //        </Div>
+    //    </SideDrawer>
+    // )
 }
 export default Cart
