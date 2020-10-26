@@ -5,8 +5,8 @@ const ShopContext = React.createContext()
 
 const client = Client.buildClient({
     
-    storefrontAccessToken: '7053f4116b54393f7f9591815abc954c',
-    domain: 'imitationdesign.myshopify.com'
+   storefrontAccessToken: 'cfdc4bfa95a9d915b0bd21eea2b7fb57',
+  domain: 'imitation-design-art.myshopify.com'
   });
 
 
