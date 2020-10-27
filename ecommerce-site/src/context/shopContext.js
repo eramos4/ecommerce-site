@@ -46,7 +46,7 @@ class ShopProvider extends Component {
     addItemToCheckout = async (variantId, quantity) => {
         const lineItemsToAdd = [
           {
-            variantId,
+            variantId: window.btoa(`gid://shopify/ProductVariant/${variantId}`),
             quantity: parseInt(quantity, 10),
           },
         ];
