@@ -103,7 +103,8 @@ __typename: (...)
                         w={{xs: '200px', lg: '280px'}}
                         
                         onClick={() => {
-                            addItemToCheckout(product.variants[0].id, 1)
+                            console.log(product.id)
+                             addItemToCheckout(product.variants[0].id, 1)
                             }}>Add To Cart</Button>       
 
                         {/* <Button

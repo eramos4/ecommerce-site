@@ -15,42 +15,58 @@ class ShopProvider extends Component {
     state = {
         products: [],
         product: {},
-        checkout: {},
+        checkout: {lineItems:[]},
         isCartOpen: false,
         test: 'test'
     }
 
     componentDidMount() {
-        if (localStorage.checkout) {
-            this.fetchCheckout(localStorage.checkout);
+        if (JSON.parse(localStorage.getItem('hasLineItems'))) {
+            this.fetchCheckout(localStorage.getItem('checkout'));
           } else {
+            console.log('creating new checkout')
             this.createCheckout();
           }
     }
 
     createCheckout = async () =>{
+
+      console.log('create checkout called')
         const checkout = await client.checkout.create();
+        // console.log('Checkout in context', checkout.id)
         localStorage.setItem("checkout", checkout.id);
         await this.setState({ checkout: checkout });
     }
 
     fetchCheckout = async (checkoutId) => {
+      console.log('fetch checkout called for clientid:', checkoutId)
         client.checkout
           .fetch(checkoutId)
           .then((checkout) => {
-            this.setState({ checkout: checkout });
+            console.log('fetched checkout from clientid', checkout)
+
+            
+                 this.setState({ checkout: checkout });
+              
+         
+            
           })
           .catch((err) => console.log(err));
       };
 
-    addItemToCheckout = async (variantId, quantity) => {
+      addItemToCheckout = async (variantId, quantity) => {
+        // this updates the lineItems local storage vairable 
+        // this will be used later to retreive a customers exisiting cart
+        if(!JSON.parse(localStorage.getItem('hasLineItems'))) { // if false, then update to true
+          localStorage.setItem('hasLineItems', true)
+
+        }
         const lineItemsToAdd = [
           {
-            variantId: window.btoa(`gid://shopify/ProductVariant/${variantId}`),
+            variantId,
             quantity: parseInt(quantity, 10),
           },
         ];
-
         const checkout = await client.checkout.addLineItems(
           this.state.checkout.id,
           lineItemsToAdd
@@ -58,6 +74,7 @@ class ShopProvider extends Component {
         this.setState({ checkout: checkout });
         console.log(checkout);
     
+        this.openCart();
       };
 
     updateCheckoutItems = async(variantId, quantity) =>{
