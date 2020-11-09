@@ -8,10 +8,10 @@ const ShopPage = () =>{
 
     const {fetchAllProducts, products} = useContext(ShopContext)
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchAllProducts()
-        return () =>{
-
+        return () => {
+            // cleanup
         };
     }, [fetchAllProducts])
 
