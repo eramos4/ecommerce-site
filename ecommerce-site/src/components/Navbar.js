@@ -69,7 +69,7 @@ const NavBarSite = () =>{
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="justify-content-end" style={{ width: "100%" }}>
-      <Nav.Link href="https://imitation-design-art.myshopify.com/collections/products"><img src={shop} style={shopStyle}/></Nav.Link>
+      <Nav.Link href="https://imitation-design-art.myshopify.com/collections/"><img src={shop} style={shopStyle}/></Nav.Link>
       <Nav.Link onClick={() => openCart()}><img src={cart} style={cartStyle}/></Nav.Link>
       {/* <Nav.Link href=""><img src={profile} style={profileStyle}/></Nav.Link> */}
     </Nav>
